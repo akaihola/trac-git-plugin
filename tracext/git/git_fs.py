@@ -212,6 +212,10 @@ class GitRepository(Repository):
                         raise NoSuchChangeset(rev)
                 return normrev
 
+        # Take advantage of Trac 0.12's new display_rev feature to shorten revs for UI
+        def display_rev(self, rev):
+                return self.short_rev(rev)
+
         def short_rev(self, rev):
                 return self.git.shortrev(self.normalize_rev(rev), min_len=self._shortrev_len)
 
