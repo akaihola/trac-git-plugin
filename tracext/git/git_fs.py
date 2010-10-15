@@ -125,7 +125,7 @@ class GitConnector(Component):
         # IWikiSyntaxProvider
 
         def get_wiki_syntax(self):
-                yield (r'(?:\b|!)[0-9a-fA-F]{40,40}\b',
+                yield (r'(?:\b|!)r?[0-9a-fA-F]{%d,40}\b' % self._shortrev_len,
                        lambda fmt, sha, match:
                                self._format_sha_link(fmt, 'changeset', sha, sha))
 
